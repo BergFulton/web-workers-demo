@@ -50,6 +50,13 @@
       console.log("No maniuplated image returned.")
     }
 
+    imageWorker.onerror = function (error) {
+      function WorkerException(message){
+        this.name = "WorkerException";
+        this.message = message;
+      };
+      throw new WorkerException('Worker error.')
+    };
 
   function revertImage() {
     return ctx.putImageData(original, 0, 0);
